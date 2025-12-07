@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: girizzi <girizzi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/03 19:30:40 by girizzi           #+#    #+#             */
-/*   Updated: 2025/12/07 12:19:54 by girizzi          ###   ########.fr       */
+/*   Created: 2025/11/07 16:42:25 by girizzi           #+#    #+#             */
+/*   Updated: 2025/11/07 16:43:09 by girizzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
-# include <pthread.h>
-# include <stdlib.h>
-# include <sys/time.h>
-# include <unistd.h>
-# include <stdio.h>
-
-# define PHILO_MAX 300
-
-
-
-//check_args.c
-int	check_isdigit(char *arg);
-int	check_args(char **argv);
-
-//init.c
-void	init_program(t_program *program, t_philo *philos);
-
-#endif
+void	init_program(t_program *program, t_philo *philos)
+{
+	program->dead_flag = 0;
+	program->philos = philos;
+	pthread_mutex_init(&program->write_lock, NULL);
+	pthread_mutex_init(&program->dead_lock, NULL);
+	pthread_mutex_init(&program->meal_lock, NULL);
+}
