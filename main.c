@@ -6,7 +6,7 @@
 /*   By: girizzi <girizzi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 19:30:00 by girizzi           #+#    #+#             */
-/*   Updated: 2025/12/07 12:17:53 by girizzi          ###   ########.fr       */
+/*   Updated: 2025/12/07 12:44:18 by girizzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ int	main(int argc, char **argv)
 		return (write(2, "Invalid number of arguments\n", 28), 1);
 	if (check_args(argv) == 1)
 		return (1);
-	init_program();
-	init_forks();
-	init_philos();
-	init_thread();
-	free_all();
+	init_program(&t_program);
+	init_forks(&t_program);
+	init_philos(&t_program);
+	init_thread(&t_program);
+	free_all(&t_program);
 	return (0);
 }
 
