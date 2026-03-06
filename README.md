@@ -1,7 +1,13 @@
-# Philosophers - 42 Project
+*This project has been created as part of the 42 curriculum by girizzi.*
 
-## Overview
-This project is a training exercise for multi-threading (Mandatory) and multi-processing (Bonus) using the classical "Dining Philosophers" problem. The goal is to simulate philosophers sitting at a round table, alternating between eating, sleeping, and thinking, without letting any of them die of starvation.
+# Philosophers 
+
+Welcome to my **Philosophers** project, a deep dive into the world of concurrent programming, race conditions, and synchronization at 42.
+
+## The Challenge
+Five philosophers are sitting around a table. In front of them is a bowl of spaghetti and a few forks. They only have three activities: **eating**, **sleeping**, and **thinking**. But there's a catch: to eat, a philosopher needs **two forks**. 
+
+If they don't eat within a certain time, they die of starvation. Balancing their needs while avoiding deadlocks and memory leaks is the core of this assignment.
 
 ## Rules
 - One or more philosophers sit at a round table.
@@ -13,21 +19,27 @@ This project is a training exercise for multi-threading (Mandatory) and multi-pr
 - The simulation stops when a philosopher dies of starvation.
 - **Goal**: No philosopher should die!
 
-## Mandatory Part (philo/)
-In the mandatory version, each philosopher is a **thread** and the forks are protected by **mutexes**.
+## Technical Implementation
 
-### Implementation Details:
-- **Threads**: Each philosopher runs in its own thread.
-- **Mutexes**: Used to prevent data races and ensure that only one philosopher can pick up a specific fork at a time.
-- **Monitoring**: A separate logic checks if a philosopher has exceeded the `time_to_die` since their last meal.
+### Mandatory Part: Threads and Mutexes
+In the `philo/` directory, each philosopher is a **thread**. To manage the shared forks, I used **mutexes** (Mutual Exclusion). Every fork is a mutex that can only be "locked" by one philosopher at a time.
 
-## Bonus Part (philo_bonus/)
-In the bonus version, each philosopher is a **process** and the forks are represented by a **semaphore**.
+- I assigned the forks based on the philosopher's ID to prevent circular wait (a classic deadlock condition).
+- To avoid CPU over-consumption, I implemented a delicate monitoring loop that checks the health of all philosophers at high frequency without stalling the simulation.
 
-### Implementation Details:
-- **Processes**: Each philosopher is a child process created via `fork()`.
-- **Semaphores**: A named semaphore represents the total number of forks available in the middle of the table.
-- **Synchronization**: The main process waits for any child to exit (indicating a death) and then terminates all other processes.
+### Bonus Part: Processes and Semaphores
+The `philo_bonus/` directory takes it a step further. Here, philosophers are independent **processes**, and the forks sit in the middle of the table as a **semaphore**.
+
+- Unlike mutexes, semaphores are perfect for managing a pool of identical resources (the forks). 
+- Since processes don't share memory, I used a dedicated monitor thread inside each philosopher process to keep track of their own "last meal" timing, allowing for a much more decentralized and robust architecture.
+
+### Precise Timing (`ft_usleep`)
+Standard `usleep` is notoriously imprecise. In a simulation where milliseconds mean the difference between life and death, I implemented a custom `ft_usleep`. It checks the time in small chunks, ensuring that a philosopher never sleeps longer than they should, keeping the simulation perfectly aligned with the subject's strict requirements.
+
+### Thread-Safe Logging
+Printing to the console is a shared resource. I implemented a protected `print_status` function that uses a specific lock to ensure that logs never overlap, and more importantly, that no one prints anything after a philosopher has died.
+
+---
 
 ## Usage
 
@@ -36,12 +48,12 @@ Both versions have their own `Makefile`.
 
 **Mandatory:**
 ```bash
-cd philo && make
+cd philo && make && ./philo 5 800 200 200
 ```
 
 **Bonus:**
 ```bash
-cd philo_bonus && make
+cd philo_bonus && make && ./philo_bonus 5 800 200 200
 ```
 
 ### Execution
@@ -62,11 +74,8 @@ Run the program with the following arguments:
 - **Philosophers survive**: `./philo 5 800 200 200`
 - **Simulation with meal limit**: `./philo 5 800 200 200 7`
 
-## Norm Compliance
-This project strictly follows the **42 School Norm**:
-- Max 5 functions per file.
-- Max 25 lines per function.
-- Max 5 variables per function.
-- Only `while` loops (no `for`).
-- No global variables.
-- Clear error handling and memory management.
+---
+
+This project adheres to the **42 Norm**, which imposed some "fun" constraints.
+
+❤️ at 42roma.
