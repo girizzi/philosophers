@@ -6,7 +6,7 @@
 /*   By: girizzi <girizzi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 19:30:00 by girizzi           #+#    #+#             */
-/*   Updated: 2025/12/07 12:44:18 by girizzi          ###   ########.fr       */
+/*   Updated: 2026/03/06 10:35:20 by girizzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,23 @@
 
 int	main(int argc, char **argv)
 {
+	t_program	program;
+
 	if (argc != 5 && argc != 6)
-		return (write(2, "Invalid number of arguments\n", 28), 1);
-	if (check_args(argv) == 1)
+	{
+		write(2, "Usage: ./philo 5 800 200 200 [5]\n", 33);
 		return (1);
-	init_program(&t_program);
-	init_forks(&t_program);
-	init_philos(&t_program);
-	init_thread(&t_program);
-	free_all(&t_program);
+	}
+	if (check_args(argv))
+		return (1);
+	if (init_program(&program, argv))
+		return (1);
+	if (init_forks(&program))
+		return (free(program.philos), 1);
+	init_philos(&program);
+	if (init_simulation(&program))
+		return (free_all(&program), 1);
+	free_all(&program);
 	return (0);
 }
 

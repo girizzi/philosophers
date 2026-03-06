@@ -6,12 +6,13 @@
 /*   By: girizzi <girizzi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 19:30:40 by girizzi           #+#    #+#             */
-/*   Updated: 2025/12/07 12:48:44 by girizzi          ###   ########.fr       */
+/*   Updated: 2026/03/06 10:34:23 by girizzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
+
 # include <pthread.h>
 # include <stdlib.h>
 # include <sys/time.h>
@@ -19,6 +20,21 @@
 # include <stdio.h>
 
 # define PHILO_MAX 300
+
+/* ************************************************************************** */
+//COLORS
+
+# define COLOR_RESET     "\033[0m"
+# define COLOR_RED       "\033[0;31m"
+# define COLOR_GREEN     "\033[1;32m"
+# define COLOR_BLUE      "\033[0;34m"
+# define COLOR_CYAN      "\033[1;36m"
+# define COLOR_YELLOW    "\033[0;33m"
+# define COLOR_PURPLE    "\033[35m"
+# define COLOR_ORANGE    "\033[38;5;208m"
+
+/* ************************************************************************** */
+//STRUCTURES
 
 typedef struct s_philo
 {
@@ -40,20 +56,36 @@ typedef struct s_program
 	int				must_eat;
 	long long		start_time;
 	int				dead_flag;
-
 	pthread_mutex_t	write_lock;
 	pthread_mutex_t	dead_lock;
 	pthread_mutex_t	meal_lock;
-
 	pthread_mutex_t	*forks;
 	t_philo			*philos;
 }	t_program;
 
-//check_args.c
-int		check_isdigit(char *arg);
-int		check_args(char **argv);
+/* ************************************************************************** */
+//FUNCTION PROTOTYPES
 
-//init.c
-void	init_program(t_program *program, t_philo *philos);
+// check_args.c
+int			check_args(char **argv);
+int			ft_atoi(char *str);
+
+// init.c
+int			init_program(t_program *program, char **argv);
+int			init_forks(t_program *program);
+void		init_philos(t_program *program);
+
+// utils.c
+long long	get_time(void);
+void		ft_usleep(long long time, t_program *program);
+void		print_status(t_philo *philo, char *status);
+
+// threads.c
+int			init_simulation(t_program *program);
+void		*philo_routine(void *arg);
+int			check_dead(t_program *program);
+
+// cleanup.c
+void		free_all(t_program *program);
 
 #endif
