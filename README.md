@@ -2,7 +2,7 @@
 
 # Philosophers 
 
-Welcome to my **Philosophers** project, a deep dive into the world of concurrent programming, race conditions, and synchronization at 42.
+A deep dive into the world of concurrent programming, race conditions, and synchronization.
 
 ## The Challenge
 Five philosophers are sitting around a table. In front of them is a bowl of spaghetti and a few forks. They only have three activities: **eating**, **sleeping**, and **thinking**. But there's a catch: to eat, a philosopher needs **two forks**. 
