@@ -33,10 +33,10 @@ The `philo_bonus/` directory takes it a step further. Here, philosophers are ind
 - Unlike mutexes, semaphores are perfect for managing a pool of identical resources (the forks). 
 - Since processes don't share memory, I used a dedicated monitor thread inside each philosopher process to keep track of their own "last meal" timing, allowing for a much more decentralized and robust architecture.
 
-### Precise Timing (`ft_usleep`)
+**Precise Timing (`ft_usleep`)**
 Standard `usleep` is notoriously imprecise. In a simulation where milliseconds mean the difference between life and death, I implemented a custom `ft_usleep`. It checks the time in small chunks, ensuring that a philosopher never sleeps longer than they should, keeping the simulation perfectly aligned with the subject's strict requirements.
 
-### Thread-Safe Logging
+**Thread-Safe Logging**
 Printing to the console is a shared resource. I implemented a protected `print_status` function that uses a specific lock to ensure that logs never overlap, and more importantly, that no one prints anything after a philosopher has died.
 
 ---
