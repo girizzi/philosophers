@@ -6,7 +6,7 @@
 /*   By: girizzi <girizzi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 11:30:00 by girizzi           #+#    #+#             */
-/*   Updated: 2026/03/15 18:14:03 by girizzi          ###   ########.fr       */
+/*   Updated: 2026/03/15 19:34:54 by girizzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	*monitor_routine(void *arg)
 		if (get_time() - philo->last_meal >= philo->program->t_die)
 		{
 			print_status(philo, "died");
+			sem_post(philo->program->meal_lock); // ← rilascia prima di uscire
+			child_cleanup(philo->program);       // ← libera memoria
 			exit(1);
 		}
 		sem_post(philo->program->meal_lock);

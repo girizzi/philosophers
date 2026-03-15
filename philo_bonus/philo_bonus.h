@@ -6,7 +6,7 @@
 /*   By: girizzi <girizzi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 11:05:00 by girizzi           #+#    #+#             */
-/*   Updated: 2026/03/15 17:57:53 by girizzi          ###   ########.fr       */
+/*   Updated: 2026/03/15 19:39:15 by girizzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,6 @@ typedef struct s_program
 	sem_t			*limit;
 	t_philo			*philos;
 }	t_program;
-
-/* ************************************************************************** */
-// FUNCTION PROTOTYPES
 
 // check_args_bonus.c
 int			check_args(char **argv);

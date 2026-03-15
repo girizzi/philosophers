@@ -6,7 +6,7 @@
 /*   By: girizzi <girizzi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 19:30:40 by girizzi           #+#    #+#             */
-/*   Updated: 2026/03/06 10:34:23 by girizzi          ###   ########.fr       */
+/*   Updated: 2026/03/15 19:38:58 by girizzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,6 @@
 # include <stdio.h>
 
 # define PHILO_MAX 300
-
-/* ************************************************************************** */
-//COLORS
-
-# define COLOR_RESET     "\033[0m"
-# define COLOR_RED       "\033[0;31m"
-# define COLOR_GREEN     "\033[1;32m"
-# define COLOR_BLUE      "\033[0;34m"
-# define COLOR_CYAN      "\033[1;36m"
-# define COLOR_YELLOW    "\033[0;33m"
-# define COLOR_PURPLE    "\033[35m"
-# define COLOR_ORANGE    "\033[38;5;208m"
-
-/* ************************************************************************** */
-//STRUCTURES
 
 typedef struct s_philo
 {
@@ -62,9 +47,6 @@ typedef struct s_program
 	pthread_mutex_t	*forks;
 	t_philo			*philos;
 }	t_program;
-
-/* ************************************************************************** */
-//FUNCTION PROTOTYPES
 
 // check_args.c
 int			check_args(char **argv);

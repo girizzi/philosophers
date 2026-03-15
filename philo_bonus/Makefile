@@ -18,7 +18,7 @@ NC		= \033[0m
 
 NAME	= philo_bonus
 
-CC		= cc
+CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror -pthread
 
 OBJ_DIR	= obj

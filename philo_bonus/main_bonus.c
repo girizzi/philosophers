@@ -6,7 +6,7 @@
 /*   By: girizzi <girizzi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 11:45:00 by girizzi           #+#    #+#             */
-/*   Updated: 2026/03/15 18:14:01 by girizzi          ###   ########.fr       */
+/*   Updated: 2026/03/15 19:36:46 by girizzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 5 && argc != 6)
 	{
-		write(2, "Usage: ./philo_bonus 5 800 200 200 [5]\n", 39);
+		write(2, "Error: wrong number of parameters\n", 35);
 		return (1);
 	}
 	if (check_args(argv))

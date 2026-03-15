@@ -6,7 +6,7 @@
 #    By: girizzi <girizzi@student.42roma.it>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/06 10:06:03 by girizzi           #+#    #+#              #
-#    Updated: 2026/03/06 11:09:31 by girizzi          ###   ########.fr        #
+#    Updated: 2026/03/15 19:37:46 by girizzi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ NC		= \033[0m
 
 NAME	= philo
 
-CC		= cc
+CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror -pthread
 
 OBJ_DIR	= obj
