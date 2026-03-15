@@ -6,7 +6,7 @@
 /*   By: girizzi <girizzi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 11:05:00 by girizzi           #+#    #+#             */
-/*   Updated: 2026/03/06 11:02:30 by girizzi          ###   ########.fr       */
+/*   Updated: 2026/03/15 17:12:38 by girizzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define SEM_WRITE "/philo_write"
 # define SEM_MEAL "/philo_meal"
 # define SEM_DEAD "/philo_dead"
+# define SEM_LIMIT "/philo_limit"
 
 typedef struct s_philo
 {
@@ -52,6 +53,7 @@ typedef struct s_program
 	sem_t			*write_lock;
 	sem_t			*meal_lock;
 	sem_t			*dead_lock;
+	sem_t			*limit;
 	t_philo			*philos;
 }	t_program;
 

@@ -6,7 +6,7 @@
 /*   By: girizzi <girizzi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 11:30:00 by girizzi           #+#    #+#             */
-/*   Updated: 2026/03/06 11:03:00 by girizzi          ###   ########.fr       */
+/*   Updated: 2026/03/15 17:22:05 by girizzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,14 @@ void	*monitor_routine(void *arg)
 			exit(1);
 		}
 		sem_post(philo->program->meal_lock);
-		usleep(1000);
+		usleep(500);
 	}
 	return (NULL);
 }
 
 static void	eat_routine(t_philo *philo)
 {
+	sem_wait(philo->program->limit);
 	sem_wait(philo->program->forks);
 	print_status(philo, "has taken a fork");
 	sem_wait(philo->program->forks);
@@ -46,6 +47,7 @@ static void	eat_routine(t_philo *philo)
 	ft_usleep(philo->program->t_eat, philo->program);
 	sem_post(philo->program->forks);
 	sem_post(philo->program->forks);
+	sem_post(philo->program->limit);
 }
 
 void	philo_routine(t_philo *philo)
@@ -54,7 +56,7 @@ void	philo_routine(t_philo *philo)
 		exit(1);
 	pthread_detach(philo->monitor_thread);
 	if (philo->id % 2 == 0)
-		ft_usleep(1, philo->program);
+		ft_usleep(philo->program->t_eat / 2, philo->program);
 	while (1)
 	{
 		eat_routine(philo);

@@ -6,7 +6,7 @@
 /*   By: girizzi <girizzi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 11:15:00 by girizzi           #+#    #+#             */
-/*   Updated: 2026/03/06 11:02:44 by girizzi          ###   ########.fr       */
+/*   Updated: 2026/03/15 17:21:59 by girizzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,15 @@ int	init_semaphores(t_program *program)
 	sem_unlink(SEM_WRITE);
 	sem_unlink(SEM_MEAL);
 	sem_unlink(SEM_DEAD);
+	sem_unlink(SEM_LIMIT);
 	program->forks = sem_open(SEM_FORKS, O_CREAT, 0644, program->n_philos);
 	program->write_lock = sem_open(SEM_WRITE, O_CREAT, 0644, 1);
 	program->meal_lock = sem_open(SEM_MEAL, O_CREAT, 0644, 1);
 	program->dead_lock = sem_open(SEM_DEAD, O_CREAT, 0644, 1);
+	program->limit = sem_open(SEM_LIMIT, O_CREAT, 0644, program->n_philos / 2);
 	if (program->forks == SEM_FAILED || program->write_lock == SEM_FAILED
-		|| program->meal_lock == SEM_FAILED || program->dead_lock == SEM_FAILED)
+		|| program->meal_lock == SEM_FAILED || program->dead_lock == SEM_FAILED
+		|| program->limit == SEM_FAILED)
 		return (1);
 	return (0);
 }
