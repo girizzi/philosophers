@@ -6,7 +6,7 @@
 /*   By: girizzi <girizzi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 11:30:00 by girizzi           #+#    #+#             */
-/*   Updated: 2026/03/15 17:22:05 by girizzi          ###   ########.fr       */
+/*   Updated: 2026/03/15 17:42:38 by girizzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	*monitor_routine(void *arg)
 		{
 			print_status(philo, "died");
 			sem_post(philo->program->meal_lock);
+			child_cleanup(philo->program);
 			exit(1);
 		}
 		sem_post(philo->program->meal_lock);
@@ -62,7 +63,10 @@ void	philo_routine(t_philo *philo)
 		eat_routine(philo);
 		if (philo->program->must_eat != -1
 			&& philo->meals_eaten >= philo->program->must_eat)
+		{
+			child_cleanup(philo->program);
 			exit(0);
+		}
 		print_status(philo, "is sleeping");
 		ft_usleep(philo->program->t_sleep, philo->program);
 		print_status(philo, "is thinking");

@@ -6,7 +6,7 @@
 /*   By: girizzi <girizzi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 11:05:00 by girizzi           #+#    #+#             */
-/*   Updated: 2026/03/15 17:12:38 by girizzi          ###   ########.fr       */
+/*   Updated: 2026/03/15 17:42:18 by girizzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ void		*monitor_routine(void *arg);
 
 // cleanup_bonus.c
 void		cleanup_simulation(t_program *program);
+void		child_cleanup(t_program *program);
 
 #endif
