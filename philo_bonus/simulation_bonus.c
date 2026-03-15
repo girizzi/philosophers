@@ -6,7 +6,7 @@
 /*   By: girizzi <girizzi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 11:30:00 by girizzi           #+#    #+#             */
-/*   Updated: 2026/03/15 17:58:03 by girizzi          ###   ########.fr       */
+/*   Updated: 2026/03/15 18:14:03 by girizzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,7 @@ void	*monitor_routine(void *arg)
 		if (get_time() - philo->last_meal >= philo->program->t_die)
 		{
 			print_status(philo, "died");
-			philo->stop = 1;
-			sem_post(philo->program->meal_lock);
-			return (NULL);
-		}
-		if (philo->stop)
-		{
-			sem_post(philo->program->meal_lock);
-			return (NULL);
+			exit(1);
 		}
 		sem_post(philo->program->meal_lock);
 		usleep(1000);
@@ -60,33 +53,22 @@ void	philo_routine(t_philo *philo)
 {
 	if (pthread_create(&philo->monitor_thread, NULL, &monitor_routine, philo))
 		exit(1);
+	pthread_detach(philo->monitor_thread);
 	if (philo->id % 2 == 0)
 		ft_usleep(philo->program->t_eat / 2, philo->program);
 	while (1)
 	{
-		sem_wait(philo->program->meal_lock);
-		if (philo->stop)
-		{
-			sem_post(philo->program->meal_lock);
-			break ;
-		}
-		sem_post(philo->program->meal_lock);
 		eat_routine(philo);
 		if (philo->program->must_eat != -1
 			&& philo->meals_eaten >= philo->program->must_eat)
-			break ;
+		{
+			child_cleanup(philo->program);
+			exit(0);
+		}
 		print_status(philo, "is sleeping");
 		ft_usleep(philo->program->t_sleep, philo->program);
 		print_status(philo, "is thinking");
 	}
-	sem_wait(philo->program->meal_lock);
-	philo->stop = 1;
-	sem_post(philo->program->meal_lock);
-	pthread_join(philo->monitor_thread, NULL);
-	child_cleanup(philo->program);
-	if (get_time() - philo->last_meal >= philo->program->t_die)
-		exit(1);
-	exit(0);
 }
 
 int	start_simulation(t_program *program)

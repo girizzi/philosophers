@@ -6,7 +6,7 @@
 /*   By: girizzi <girizzi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 11:40:00 by girizzi           #+#    #+#             */
-/*   Updated: 2026/03/15 18:08:07 by girizzi          ###   ########.fr       */
+/*   Updated: 2026/03/15 18:14:05 by girizzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	child_cleanup(t_program *program)
 {
-	sem_post(program->dead_lock);
 	sem_close(program->forks);
 	sem_close(program->write_lock);
 	sem_close(program->meal_lock);
