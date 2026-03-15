@@ -6,7 +6,7 @@
 /*   By: girizzi <girizzi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 11:45:00 by girizzi           #+#    #+#             */
-/*   Updated: 2026/03/06 11:03:14 by girizzi          ###   ########.fr       */
+/*   Updated: 2026/03/15 18:08:09 by girizzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 static void	wait_simulation(t_program *program)
 {
 	int	i;
-	int	status;
 
-	i = 0;
-	while (i < program->n_philos)
+	if (program->must_eat != -1)
 	{
-		waitpid(-1, &status, 0);
-		if (WEXITSTATUS(status) == 1)
+		i = 0;
+		while (i < program->n_philos)
 		{
-			cleanup_simulation(program);
-			exit(1);
+			waitpid(-1, NULL, 0);
+			i++;
 		}
-		i++;
 	}
+	else
+		sem_wait(program->dead_lock);
+	cleanup_simulation(program);
 }
 
 int	main(int argc, char **argv)
