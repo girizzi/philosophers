@@ -6,7 +6,7 @@
 /*   By: girizzi <girizzi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 11:15:00 by girizzi           #+#    #+#             */
-/*   Updated: 2026/03/15 17:21:59 by girizzi          ###   ########.fr       */
+/*   Updated: 2026/03/15 17:58:01 by girizzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	init_philos(t_program *program)
 		program->philos[i].id = i + 1;
 		program->philos[i].meals_eaten = 0;
 		program->philos[i].last_meal = program->start_time;
+		program->philos[i].stop = 0;
 		program->philos[i].program = program;
 		i++;
 	}

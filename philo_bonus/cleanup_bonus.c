@@ -6,7 +6,7 @@
 /*   By: girizzi <girizzi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 11:40:00 by girizzi           #+#    #+#             */
-/*   Updated: 2026/03/15 17:42:25 by girizzi          ###   ########.fr       */
+/*   Updated: 2026/03/15 17:57:16 by girizzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@ void	child_cleanup(t_program *program)
 	sem_close(program->meal_lock);
 	sem_close(program->dead_lock);
 	sem_close(program->limit);
-	sem_unlink(SEM_FORKS);
-	sem_unlink(SEM_WRITE);
-	sem_unlink(SEM_MEAL);
-	sem_unlink(SEM_DEAD);
-	sem_unlink(SEM_LIMIT);
 	if (program->philos)
 		free(program->philos);
 }
@@ -40,4 +35,9 @@ void	cleanup_simulation(t_program *program)
 		i++;
 	}
 	child_cleanup(program);
+	sem_unlink(SEM_FORKS);
+	sem_unlink(SEM_WRITE);
+	sem_unlink(SEM_MEAL);
+	sem_unlink(SEM_DEAD);
+	sem_unlink(SEM_LIMIT);
 }

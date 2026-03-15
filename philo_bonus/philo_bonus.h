@@ -6,7 +6,7 @@
 /*   By: girizzi <girizzi@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 11:05:00 by girizzi           #+#    #+#             */
-/*   Updated: 2026/03/15 17:42:18 by girizzi          ###   ########.fr       */
+/*   Updated: 2026/03/15 17:57:53 by girizzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_philo
 	int					meals_eaten;
 	long long			last_meal;
 	pid_t				pid;
+	int					stop;
 	pthread_t			monitor_thread;
 	struct s_program	*program;
 }	t_philo;
