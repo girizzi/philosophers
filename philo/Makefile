@@ -6,7 +6,7 @@
 #    By: girizzi <girizzi@student.42roma.it>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/06 10:06:03 by girizzi           #+#    #+#              #
-#    Updated: 2026/03/16 16:59:59 by girizzi          ###   ########.fr        #
+#    Updated: 2026/03/16 18:10:52 by girizzi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,12 +48,12 @@ $(NAME): $(OBJ)
 	@echo ""
 	@echo "$(GREEN)✓ $(NAME) COMPILED!$(NC)"
 	@echo ""
-	@echo "$(GREEN)Run: ./philo <N1> <N2> <N3> <N4> <*N5>$(NC)"
-	@echo "$(GREEN)N1:$(NC) Number of philosophers (max 300)"
-	@echo "$(GREEN)N2:$(NC) Time to die"
-	@echo "$(GREEN)N3:$(NC) Time to eat"
-	@echo "$(GREEN)N4:$(NC) Time to sleep"
-	@echo "$(GREEN)N5:$(NC) *optional Number of dinners"
+	@echo "$(GREEN)Run: ./philo <N1> <N2> <N3> <N4> $(NC)<*N5>"
+	@echo "$(GREEN) N1:$(NC) Nr. of philosophers"
+	@echo "$(GREEN) N2:$(NC) Time to die"
+	@echo "$(GREEN) N3:$(NC) Time to eat"
+	@echo "$(GREEN) N4:$(NC) Time to sleep"
+	@echo "*N5: (optional) Nr. of meals"
 	@echo ""
 
 clean:
