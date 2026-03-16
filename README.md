@@ -41,8 +41,6 @@ The `philo_bonus/` directory takes it a step further. Here, philosophers are ind
 - Unlike mutexes, semaphores are perfect for managing a pool of identical resources (the forks). 
 - Since processes don't share memory, I used a dedicated monitor thread inside each philosopher process to keep track of their own "last meal" timing, allowing for a much more decentralized and robust architecture.
 
----
-
 ## Instructions
 
 ### Compilation
@@ -64,7 +62,7 @@ Run the program with the following arguments:
 ./philo <number_of_philosophers> <time_to_die> <time_to_eat> <time_to_sleep> [number_of_times_each_philosopher_must_eat]
 ```
 
-### Arguments:
+### Arguments
 1. `number_of_philosophers`: The number of philosophers and also the number of forks.
 2. `time_to_die` (ms): If a philosopher didn’t start eating `time_to_die` milliseconds since the beginning of their last meal or the beginning of the simulation, they die.
 3. `time_to_eat` (ms): The time it takes for a philosopher to eat. During that time, they will need to hold two forks.
@@ -76,16 +74,10 @@ Run the program with the following arguments:
 - **Philosophers survive**: `./philo 5 800 200 200`
 - **Simulation with meal limit**: `./philo 5 800 200 200 7`
 
----
-
-### Resources
+## Resources
 
 - [The Dining Philosophers Problem](https://en.wikipedia.org/wiki/Dining_philosophers_problem)
 - [Philosophers 42 Guide](https://medium.com/@ruinadd/philosophers-42-guide-the-dining-philosophers-problem-893a24bc0fe2)
 - [The Deadlock problem](https://webdocs.cs.ualberta.ca/~tony/OldPapers/dead.pdf)
 - [The little book of semaphores](https://greenteapress.com/wp/semaphores/)
 - [Philosophers Tutorial by Oceano](https://www.youtube.com/watch?v=zOpzGHwJ3MU)
-
-This project adheres to the **42 Norm**, which imposed some "fun" constraints.
-
-❤️ at 42 Roma.

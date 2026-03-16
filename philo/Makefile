@@ -6,7 +6,7 @@
 #    By: girizzi <girizzi@student.42roma.it>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/06 10:06:03 by girizzi           #+#    #+#              #
-#    Updated: 2026/03/15 19:37:46 by girizzi          ###   ########.fr        #
+#    Updated: 2026/03/16 16:59:59 by girizzi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,28 +41,28 @@ $(OBJ_DIR):
 
 $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "$(CYAN) COMPILED:$(NC) $<"
+	@echo "$(CYAN)COMPILED:$(NC) $<"
 
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 	@echo ""
-	@echo "$(GREEN) ✓ $(NAME) COMPILED!$(NC)"
+	@echo "$(GREEN)✓ $(NAME) COMPILED!$(NC)"
 	@echo ""
-	@echo " Run: ./philo <N1> <N2> <N3> <N4> <*N5>"
-	@echo " N1: Number of philosophers (max 300)"
-	@echo " N2: Time to die"
-	@echo " N3: Time to eat"
-	@echo " N4: Time to sleep"
-	@echo " *optional N5: Number of dinners required"
+	@echo "$(GREEN)Run: ./philo <N1> <N2> <N3> <N4> <*N5>$(NC)"
+	@echo "$(GREEN)N1:$(NC) Number of philosophers (max 300)"
+	@echo "$(GREEN)N2:$(NC) Time to die"
+	@echo "$(GREEN)N3:$(NC) Time to eat"
+	@echo "$(GREEN)N4:$(NC) Time to sleep"
+	@echo "$(GREEN)N5:$(NC) *optional Number of dinners"
 	@echo ""
 
 clean:
 	@rm -rf $(OBJ_DIR)
-	@echo "$(YELLOW) ✓ OBJECTS CLEANED!$(NC)"
+	@echo "$(YELLOW)✓ OBJECTS CLEANED!$(NC)"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "$(RED) ✓ $(NAME) CLEANED!$(NC)"
+	@echo "$(RED)✓ $(NAME) CLEANED!$(NC)"
 	@echo ""
 
 re: fclean all
